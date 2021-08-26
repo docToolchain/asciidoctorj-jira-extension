@@ -1,0 +1,28 @@
+plugins {
+    id 'groovy'
+}
+
+group 'org.doctoolchain'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.8'
+    testImplementation platform("org.spockframework:spock-bom:2.0-groovy-3.0")
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+    implementation 'com.github.groovy-wslite:groovy-wslite:1.1.3'
+    implementation 'org.asciidoctor:asciidoctorj:2.2.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testImplementation 'com.github.tomakehurst:wiremock-jre8:2.30.0'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
