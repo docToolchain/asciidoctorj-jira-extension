@@ -8,7 +8,8 @@ jobs:
     strategy:
       matrix:
         java-version: [8,9,11]
-    name: run tests with ${{ matrix.java-version }}
+        distribution: [zulu, adopt]
+    name: run tests with ${{ matrix.java-version }} ${{ matrix.distribution }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,6 +18,7 @@ jobs:
 
       - uses: actions/setup-java@v2
         with:
+          distribution: ${{ matrix.distribution }}
           java-version: ${{ matrix.java-version }}
 
       - run: ./gradlew test
