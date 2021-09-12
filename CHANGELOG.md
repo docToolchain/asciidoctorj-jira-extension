@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### :rocket: Features & Enhancements
+- Implement Jira inline macro
+
 ### :broom: Housekeeping
 - Setup validate-gradle-wrapper pipeline via github actions
 - Setup run tests pipeline for java 8,9,11 and distribution zulu and adopt via github actions

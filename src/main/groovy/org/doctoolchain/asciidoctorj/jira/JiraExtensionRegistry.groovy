@@ -8,5 +8,6 @@ class JiraExtensionRegistry implements ExtensionRegistry {
     @Override
     void register(Asciidoctor asciidoctor) {
         asciidoctor.javaExtensionRegistry().blockMacro(JiraIssuesBlockMacroProcessor.class)
+        asciidoctor.javaExtensionRegistry().inlineMacro(JiraIssueInlineMacro.class)
     }
 }

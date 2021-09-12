@@ -5,7 +5,7 @@ import org.asciidoctor.extension.InlineMacroProcessor
 import org.asciidoctor.extension.Name
 
 @Name("jira")
-class JIRALinkMacro extends InlineMacroProcessor {
+class JiraIssueInlineMacro extends InlineMacroProcessor {
 
     @Override
     Object process(ContentNode parent, String target, Map<String, Object> attributes) {
@@ -13,7 +13,7 @@ class JIRALinkMacro extends InlineMacroProcessor {
         def jiraHost = attributes.get("jira-host", parent.getDocument().getAttribute("jira-host"))
 
         String href = new StringBuilder()
-                .append("https://)")
+                .append("https://")
                 .append(jiraHost)
                 .append("/browse/")
                 .append(target)
@@ -23,6 +23,6 @@ class JIRALinkMacro extends InlineMacroProcessor {
                 target: href,
                 id: target
         ]
-        return createPhraseNode(parent, "anchor", target, options)
+        return createPhraseNode(parent, "anchor", target, attributes, options)
     }
 }
