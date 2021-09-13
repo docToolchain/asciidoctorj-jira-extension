@@ -1,13 +1,63 @@
 plugins {
     id 'groovy'
+    id 'java-library'
+    id "maven-publish"
+    id "signing"
+    id 'io.github.gradle-nexus.publish-plugin' version '1.1.0'
 }
 
-group 'org.doctoolchain'
-version '1.0.0-SNAPSHOT'
+
+ext.isReleaseVersion = !project.version.endsWith("-SNAPSHOT")
 
 repositories {
     mavenCentral()
 }
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                description = project.description
+                url = 'https://github.com/doctoolchain/asciidoctorj-jira-extension'
+                from components.java
+                developers {
+                    developer {
+                        id = 'uniqueck'
+                        name = 'Constantin Krüger'
+                        email = 'github@constantin-krueger.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
+}
+
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+            username = findProperty("nexusUsername") ?: System.getenv("OSSRH_USERNAME")
+            password = findProperty("nexusPassword") ?: System.getenv("OSSRH_PASSWORD")
+        }
+    }
+}
+
+
 
 dependencies {
     implementation 'org.codehaus.groovy:groovy-all:3.0.8'

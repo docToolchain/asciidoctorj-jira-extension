@@ -1,0 +1,22 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+def signingKey = System.getenv("SIGNING_KEY")
+def signingPassword = System.getenv("SIGNING_PASSWORD")
+
+signing {
+    if (signingKey != null &&
+            signingPassword != null &&
+            !signingKey.isEmpty() &&
+            !signingPassword.isEmpty()) {
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign publishing.publications.maven
+    } else {
+        logger.warn('The signing key and password are null. This can be ignored if this is a pull request.')
+    }
+}
+
+def isReleaseVersion = !version.endsWith("SNAPSHOT") && /* for Eclipse plugin */ !version.contains("-SNAPSHOT.")
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
+}
