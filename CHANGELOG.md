@@ -14,3 +14,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Setup run tests pipeline for java 8,9,11 and distribution zulu and adopt via github actions
 - Use git lfs to keep repository size small
 - Introduce a changelog file based on [Keep a changelog](https://keepachangelog.com/en/1.0.0/)
+- Publish test results to PullRequests
+- Replace JDK9 with JDK16 in test matrix

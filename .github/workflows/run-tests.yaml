@@ -7,7 +7,7 @@ jobs:
   run-tests:
     strategy:
       matrix:
-        java-version: [8,9,11]
+        java-version: [8,11,16]
         distribution: [zulu, adopt]
     name: run tests with ${{ matrix.java-version }} ${{ matrix.distribution }}
     runs-on: ubuntu-latest
@@ -23,3 +23,29 @@ jobs:
           java-version: ${{ matrix.java-version }}
 
       - run: ./gradlew test
+
+      - name: archive test results
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-results-${{ matrix.jdk }}
+          path: |
+            **/build/test-results/**/TEST-*.xml
+
+  publish-test-results:
+    name: "Publish Tests Results"
+    runs-on: ubuntu-latest
+    needs: run-tests
+    if: success() || failure()
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: |
+            artifacts/**/TEST-*.xml
