@@ -23,7 +23,23 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             pom {
+                name = project.name
                 description = project.description
+                inceptionYear = '2021'
+                licenses {
+                    license {
+                        name = 'The Apache Software License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution = 'repo'
+                    }
+                }
+                issueManagement {
+                    system = 'github'
+                    url = 'https://github.com/doctoolchain/asciidoctorj-jira-extension/issues'
+                }
+                scm {
+                    url = 'https://github.com/doctoolchain/asciidoctorj-jira-extension'
+                }
                 url = 'https://github.com/doctoolchain/asciidoctorj-jira-extension'
                 from components.java
                 developers {
