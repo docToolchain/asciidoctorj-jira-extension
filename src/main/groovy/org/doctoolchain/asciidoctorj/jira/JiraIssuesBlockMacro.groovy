@@ -12,22 +12,21 @@ import wslite.rest.RESTClient
 import wslite.rest.Response
 
 @Name("jiraIssues")
-class JiraIssuesBlockMacroProcessor extends BlockMacroProcessor {
+class JiraIssuesBlockMacro extends BlockMacroProcessor {
 
     static final String ATTR_JQL = "jql"
     static final String DEFAULT_JQL = "resolution='Unresolved' ORDER BY priority DESC, duedate ASC"
-    static final String ATTR_JIRA_HOST = "jiraissues-host"
-    static final String ATTR_JIRA_USERNAME = "jiraissues-username"
-    static final String ATTR_JIRA_APITOKEN = "jiraissues-apitoken"
+    static final String ATTR_JIRA_HOST = "jira-host"
+    static final String ATTR_JIRA_USERNAME = "jira-username"
+    static final String ATTR_JIRA_APITOKEN = "jira-apitoken"
 
     @Override
     Object process(StructuralNode parent, String target, Map<String, Object> attributes) {
-        println target
         String projectKey = target
         String jql = attributes.getOrDefault(ATTR_JQL, DEFAULT_JQL)
         String jiraHost = parent.getAttribute(ATTR_JIRA_HOST)
         if (! jiraHost) {
-            log(new LogRecord(Severity.ERROR, "Attribute :jiraissues-host: is not defined"))
+            log(new LogRecord(Severity.ERROR, "Attribute :jira-host: is not defined"))
             return
         }
         String jiraUsername = parent.getAttribute(ATTR_JIRA_USERNAME)

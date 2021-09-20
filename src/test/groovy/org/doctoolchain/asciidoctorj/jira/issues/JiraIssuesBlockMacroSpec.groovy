@@ -3,7 +3,6 @@ package org.doctoolchain.asciidoctorj.jira.issues
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.common.ConsoleNotifier
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration
-import com.github.tomakehurst.wiremock.http.HttpHeader
 import org.asciidoctor.Asciidoctor
 import org.asciidoctor.Options
 import org.asciidoctor.OptionsBuilder
@@ -14,7 +13,7 @@ import spock.lang.Specification
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
 
-class JiraIssuesBlockMacroProcessorSpec extends Specification {
+class JiraIssuesBlockMacroSpec extends Specification {
 
     @Shared
     WireMockServer wireMock = new WireMockServer(WireMockConfiguration.wireMockConfig().dynamicPort().stubRequestLoggingDisabled(false).notifier(new ConsoleNotifier(true)).withRootDirectory("src/test/resources"))
@@ -30,9 +29,9 @@ class JiraIssuesBlockMacroProcessorSpec extends Specification {
                 .safe(SafeMode.UNSAFE)
                 .inPlace(true)
                 .attributes([
-                        "jiraissues-host"    : wireMock.baseUrl(),
-                        "jiraissues-username": "username",
-                        "jiraissues-apitoken": "apitoken"
+                        "jira-host"    : wireMock.baseUrl(),
+                        "jira-username": "username",
+                        "jira-apitoken": "apitoken"
                 ])
                 .get()
 
