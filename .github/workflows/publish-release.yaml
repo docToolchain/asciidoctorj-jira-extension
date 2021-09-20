@@ -1,0 +1,83 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build_release:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    name: Build & Deploy Release to OSSRH
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          cache: 'gradle'
+
+      - name: Get version from tag name
+        id: vars
+        run: echo ::set-output name=version::${GITHUB_REF##*/v}
+
+      - name: Build & Publish
+        run: ./gradlew publish -Pversion=${{ steps.vars.outputs.version }}
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SIGNING_KEY: ${{ secrets.SIGNATORY_KEY }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNATORY_PASSWORD }}
+
+      - name: Close Staging Repository
+        run: ./gradlew closeSonatypeStagingRepository
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+
+      - name: Create github release
+        uses: docker://antonyurchenko/git-release:latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRAFT_RELEASE: "false"
+          PRE_RELEASE: "false"
+          CHANGELOG_FILE: "CHANGELOG.md"
+          ALLOW_EMPTY_CHANGELOG: "false"
+          RELEASE_NAME_PREFIX: "Release: "
+        with:
+          args: |
+            ./build/libs/asciidoctor-jira-extension-*.jar
+
+      - name: Release Staging Repository
+        run: ./gradlew releaseSonatypeStagingRepository
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+
+  announcement:
+    name: "Send anouncements"
+    runs-on: ubuntu-latest
+    needs: build_release
+    if: success()
+
+    steps:
+      - name: Set release version
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Announcement
+        uses: yuzutech/zulip-send-message-action@v0.1.0
+        with:
+          username: ${{ secrets.ZULIP_USERNAME }}
+          api-key: ${{ secrets.ZULIP_API_KEY }}
+          organization-url: 'https://asciidoctor.zulipchat.com'
+          to: '279652'
+          type: 'stream'
+          topic: 'contrib releases'
+          content: |
+            asciidoctorj-jira-extension ${{ env.RELEASE_VERSION }} is out!
+            https://github.com/doctoolchain/asciidoctorj-jira-extension/releases/tag/${{ env.RELEASE_VERSION }}

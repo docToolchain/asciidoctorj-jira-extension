@@ -18,3 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace JDK9 with JDK16 in test matrix
 - Publish Snapshot to Maven central [(#4)](https://github.com/docToolchain/asciidoctorj-jira-extension/issues/4)
 - Disable gradle module metadata [(#4)](https://github.com/docToolchain/asciidoctorj-jira-extension/issues/4)
+- Publish Release to Maven central [(#6)](https://github.com/docToolchain/asciidoctorj-jira-extension/issues/6)
