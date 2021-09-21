@@ -26,11 +26,23 @@ jobs:
         run: echo ::set-output name=version::${GITHUB_REF##*/v}
 
       - name: Build & Publish
-        run: ./gradlew publish -Pversion=${{ steps.vars.outputs.version }}
+        run: ./gradlew publish closeSonatypeStagingRepository -Pversion=${{ steps.vars.outputs.version }}
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
           SIGNING_KEY: ${{ secrets.SIGNATORY_KEY }}
           SIGNING_PASSWORD: ${{ secrets.SIGNATORY_PASSWORD }}
 
+      - name: create github release
+        uses: docker://antonyurchenko/git-release:latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRAFT_RELEASE: "false"
+          PRE_RELEASE: "false"
+          CHANGELOG_FILE: "CHANGELOG.md"
+          ALLOW_EMPTY_CHANGELOG: "false"
+          RELEASE_NAME_PREFIX: "Release: "
+        with:
+          args: |
+            ./build/libs/asciidoctor-jira-extension-*.jar
 
