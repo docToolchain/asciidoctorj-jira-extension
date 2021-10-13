@@ -1,0 +1,142 @@
+{
+  "expand": "schema,names",
+  "startAt": 0,
+  "maxResults": 50,
+  "total": 4,
+  "issues": [
+    {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "id": "10003",
+      "self": "https://uniqueck.atlassian.net/rest/api/2/issue/10003",
+      "key": "DOC-4",
+      "fields": {
+        "summary": "AnotherBug",
+        "issuetype": {
+          "self": "https://uniqueck.atlassian.net/rest/api/2/issuetype/10003",
+          "id": "10003",
+          "description": "Bugs track problems or errors.",
+          "iconUrl": "https://uniqueck.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+          "name": "Bug",
+          "subtask": false,
+          "avatarId": 10303,
+          "entityId": "571416f3-1b8e-40c5-8417-bdb5215b016b",
+          "hierarchyLevel": 0
+        },
+        "created": "2021-10-09T10:02:04.629+0200",
+        "resolutiondate": null,
+        "timeoriginalestimate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://uniqueck.atlassian.net/rest/api/2/priority/3",
+          "iconUrl": "https://uniqueck.atlassian.net/images/icons/priorities/medium.svg",
+          "name": "Medium",
+          "id": "3"
+        }
+      }
+    },
+    {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "id": "10002",
+      "self": "https://uniqueck.atlassian.net/rest/api/2/issue/10002",
+      "key": "DOC-3",
+      "fields": {
+        "summary": "Task123",
+        "issuetype": {
+          "self": "https://uniqueck.atlassian.net/rest/api/2/issuetype/10002",
+          "id": "10002",
+          "description": "Tasks track small, distinct pieces of work.",
+          "iconUrl": "https://uniqueck.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "entityId": "1a7717db-7361-4eff-ae86-466a571201bd",
+          "hierarchyLevel": 0
+        },
+        "resolutiondate": null,
+        "created": "2021-10-09T10:01:35.706+0200",
+        "timeoriginalestimate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://uniqueck.atlassian.net/rest/api/2/priority/3",
+          "iconUrl": "https://uniqueck.atlassian.net/images/icons/priorities/medium.svg",
+          "name": "Medium",
+          "id": "3"
+        }
+      }
+    },
+    {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "id": "10001",
+      "self": "https://uniqueck.atlassian.net/rest/api/2/issue/10001",
+      "key": "DOC-2",
+      "fields": {
+        "summary": "Bug123",
+        "issuetype": {
+          "self": "https://uniqueck.atlassian.net/rest/api/2/issuetype/10003",
+          "id": "10003",
+          "description": "Bugs track problems or errors.",
+          "iconUrl": "https://uniqueck.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+          "name": "Bug",
+          "subtask": false,
+          "avatarId": 10303,
+          "entityId": "571416f3-1b8e-40c5-8417-bdb5215b016b",
+          "hierarchyLevel": 0
+        },
+        "resolutiondate": null,
+        "created": "2021-10-09T09:59:31.902+0200",
+        "timeoriginalestimate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://uniqueck.atlassian.net/rest/api/2/priority/3",
+          "iconUrl": "https://uniqueck.atlassian.net/images/icons/priorities/medium.svg",
+          "name": "Medium",
+          "id": "3"
+        }
+      }
+    },
+    {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "id": "10000",
+      "self": "https://uniqueck.atlassian.net/rest/api/2/issue/10000",
+      "key": "DOC-1",
+      "fields": {
+        "summary": "Test123",
+        "issuetype": {
+          "self": "https://uniqueck.atlassian.net/rest/api/2/issuetype/10001",
+          "id": "10001",
+          "description": "Stories track functionality or features expressed as user goals.",
+          "iconUrl": "https://uniqueck.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+          "name": "Story",
+          "subtask": false,
+          "avatarId": 10315,
+          "entityId": "f6cd2e8b-a4c6-42dc-bdde-75c233ad0a2d",
+          "hierarchyLevel": 0
+        },
+        "resolutiondate": null,
+        "created": "2021-08-08T12:13:19.203+0200",
+        "timeoriginalestimate": null,
+        "assignee": {
+          "self": "https://uniqueck.atlassian.net/rest/api/2/user?accountId=557058%3A33a35ab0-710d-480c-b616-0ffe67bd7830",
+          "accountId": "557058:33a35ab0-710d-480c-b616-0ffe67bd7830",
+          "emailAddress": "bikerconstantin@googlemail.com",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/ce840c933830e2529408ff3358b5a3e7?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCK-1.png",
+            "24x24": "https://secure.gravatar.com/avatar/ce840c933830e2529408ff3358b5a3e7?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCK-1.png",
+            "16x16": "https://secure.gravatar.com/avatar/ce840c933830e2529408ff3358b5a3e7?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCK-1.png",
+            "32x32": "https://secure.gravatar.com/avatar/ce840c933830e2529408ff3358b5a3e7?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCK-1.png"
+          },
+          "displayName": "Constantin Krueger",
+          "active": true,
+          "timeZone": "Europe/Berlin",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://uniqueck.atlassian.net/rest/api/2/priority/3",
+          "iconUrl": "https://uniqueck.atlassian.net/images/icons/priorities/medium.svg",
+          "name": "Medium",
+          "id": "3"
+        }
+      }
+    }
+  ]
+}

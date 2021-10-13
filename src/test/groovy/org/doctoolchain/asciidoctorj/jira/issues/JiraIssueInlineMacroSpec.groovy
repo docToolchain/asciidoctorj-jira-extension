@@ -21,7 +21,7 @@ class JiraIssueInlineMacroSpec extends Specification {
                 .safe(SafeMode.UNSAFE)
                 .inPlace(true)
                 .attributes([
-                        "jira-host"    : "jira-host",
+                        "jira-host"    : "http://jira-host",
                 ])
                 .get()
 
@@ -31,7 +31,7 @@ class JiraIssueInlineMacroSpec extends Specification {
         then:
         Assertions.assertThat(convertedContent).isEqualToIgnoringWhitespace('''
         <div class="paragraph">
-            <p><a href="https://jira-host/browse/DOC-1234" id="DOC-1234">DOC-1234</a></p>
+            <p><a href="http://jira-host/browse/DOC-1234" id="DOC-1234">DOC-1234</a></p>
         </div>''')
 
     }
