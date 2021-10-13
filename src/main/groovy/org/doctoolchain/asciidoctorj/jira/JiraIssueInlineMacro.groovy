@@ -13,7 +13,6 @@ class JiraIssueInlineMacro extends InlineMacroProcessor {
         def jiraHost = attributes.get("jira-host", parent.getDocument().getAttribute("jira-host"))
 
         String href = new StringBuilder()
-                .append("https://")
                 .append(jiraHost)
                 .append("/browse/")
                 .append(target)

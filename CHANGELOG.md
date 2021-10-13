@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### :rocket: Features & Enhancements
 - Implement Jira inline macro
+- Show jira issue type icons in front of issue key [(#8)](https://githu.com/doctoolchain/asciidoctorj-jira-extension/issues/8)
 
 ### :broom: Housekeeping
 - Setup validate-gradle-wrapper pipeline via github actions
